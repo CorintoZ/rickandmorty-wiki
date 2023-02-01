@@ -1,9 +1,11 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export const SearchBar = ({
   setSearch,
   setPageNumber,
 }: {
-  setSearch: any;
-  setPageNumber: any;
+  setSearch: Dispatch<SetStateAction<string>>;
+  setPageNumber: Dispatch<SetStateAction<number>>;
 }) => {
   return (
     <form className="flex grow-1">

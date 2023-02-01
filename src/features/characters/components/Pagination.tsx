@@ -12,7 +12,7 @@ const Pagination = ({
   info: Info;
   updatePageNumber: Dispatch<SetStateAction<number>>;
 }) => {
-  const pageChange = (data) => {
+  const pageChange = (data: { selected: number }) => {
     updatePageNumber(data.selected + 1);
   };
   const [width, setWidth] = useState(window.innerWidth);
