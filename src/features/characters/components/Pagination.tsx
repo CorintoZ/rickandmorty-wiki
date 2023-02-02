@@ -41,7 +41,7 @@ const Pagination = ({
         pageClassName="text-lg p-4 text-blue-500 border border-blue-500"
         forcePage={pageNumber === 1 ? 0 : pageNumber - 1}
         marginPagesDisplayed={width < 576 ? 1 : 2}
-        pageRangeDisplayed={width < 576 ? 1 : 2}
+        pageRangeDisplayed={width < 576 ? 2 : 4}
         pageCount={info?.pages}
         onPageChange={pageChange}
       />
