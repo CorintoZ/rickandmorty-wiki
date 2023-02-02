@@ -16,9 +16,16 @@ const CharacterSearcher = () => {
   }, [search, pageNumber]);
 
   return (
-    <>
-      <div className="flex justify-center">
+    <div className="flex flex-col justify-center">
+      <div className="flex flex-col items-center m-4 gap-y-2">
+        <img
+          src="https://www.pngall.com/wp-content/uploads/4/Rick-And-Morty-PNG-Images.png"
+          alt=""
+        />
         <SearchBar setPageNumber={setPageNumber} setSearch={setSearch} />
+        {!fetchedData?.results?.length && (
+          <div className="text-blue-500 text-lg font-medium">No results found</div>
+        )}
       </div>
       <div className="container mx-auto h-max-vh flex ">
         <div className="grid grid-cols-4 lg:grid-cols-8 gap-4">
@@ -34,7 +41,7 @@ const CharacterSearcher = () => {
           updatePageNumber={setPageNumber}
         />
       )}
-    </>
+    </div>
   );
 };
 
