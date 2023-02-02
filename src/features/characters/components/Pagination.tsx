@@ -26,7 +26,7 @@ const Pagination = ({
   return (
     <>
       <ReactPaginate
-        containerClassName="flex list-none pl-0 text-lg justify-center"
+        containerClassName="flex list-none pl-0 text-lg justify-center mb-4"
         nextLabel="Next"
         previousLabel="Prev"
         previousLinkClassName="text-blue-500 py-4"

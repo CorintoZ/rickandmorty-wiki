@@ -24,10 +24,15 @@ const Login = () => {
     return email.length > 0 && password.length > 0;
   };
   return (
-    <section className="h-screen">
-      <div className="container  h-full">
+    <section className="h-full container">
+      <div>
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+          <img
+            src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-portal-moon-mod-download-35.png"
+            alt="rick-morty-login"
+          />
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
+            <h1 className="text-2xl font-bold mb-4">Login</h1>
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <input
