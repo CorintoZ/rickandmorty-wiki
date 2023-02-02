@@ -17,10 +17,12 @@ const CharacterSearcher = () => {
 
   return (
     <>
-      <SearchBar setPageNumber={setPageNumber} setSearch={setSearch} />
-      <div className="container mx-auto h-max-vh">
+      <div className="flex justify-center">
+        <SearchBar setPageNumber={setPageNumber} setSearch={setSearch} />
+      </div>
+      <div className="container mx-auto h-max-vh flex ">
         <div className="grid grid-cols-4 lg:grid-cols-8 gap-4">
-          {fetchedData?.results.map(({ id, name, image }) => {
+          {fetchedData?.results?.map(({ id, name, image }) => {
             return <CharacterItem key={id} id={id} name={name} image={image} />;
           })}
         </div>

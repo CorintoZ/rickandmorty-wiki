@@ -8,7 +8,7 @@ export const SearchBar = ({
   setPageNumber: Dispatch<SetStateAction<number>>;
 }) => {
   return (
-    <form className="flex grow-1">
+    <form className="flex m-2 p-2 bg-blue-300 rounded-lg shadow-sm">
       <input
         onChange={(e) => {
           setPageNumber(1);
