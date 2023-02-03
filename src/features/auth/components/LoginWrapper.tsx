@@ -1,3 +1,5 @@
+import { computeHeadingLevel } from '@testing-library/react';
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
@@ -7,17 +9,31 @@ import { loginUser } from '../../../services/api.service';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessages, setErrorMessages] = useState<{
+    name: string;
+    message: string;
+  } | null>(null);
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+  const renderErrorMessage = (name: string) =>
+    name === errorMessages?.name && (
+      <div className="text-red-500 mb-2">{errorMessages?.message}</div>
+    );
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const user = { email, password };
-
-    await loginUser(user).then((res) => {
-      cookies.set('TOKEN', res.token);
-      navigate('/');
-    });
+    try {
+      await loginUser(user).then((res) => {
+        cookies.set('TOKEN', res.data.token);
+        navigate('/');
+      });
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        setErrorMessages({ name: 'invalid', message: err.response?.data.message });
+      }
+    }
   };
 
   const validateForm = () => {
@@ -51,9 +67,10 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {renderErrorMessage('invalid')}
               <button
                 type="submit"
-                className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mt-2"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
                 disabled={!validateForm()}

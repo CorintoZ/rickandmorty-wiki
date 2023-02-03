@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { Character, CharacterResponse } from '../features/characters/models/Character';
 import { IUserAuth } from '../models/User';
 const baseUrl = `https://rickandmortyapi.com/api`;
@@ -23,18 +25,15 @@ export const getCharacterById = (id: string) => {
 };
 
 export const loginUser = (user: IUserAuth) => {
-  return fetch(`${localhostUrl}/auth/login`, {
-    method: 'POST',
-    body: JSON.stringify(user),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((res) => res.json());
+  return axios.post(`${localhostUrl}/auth/login`, {
+    email: user.email,
+    password: user.password,
+  });
 };
 
 export const registerUser = (user: IUserAuth) => {
-  return fetch(`${baseUrl}/register`, {
-    method: 'POST',
-    body: JSON.stringify(user),
-  }).then((res) => res.json());
+  return axios.post(`${localhostUrl}/auth/register`, {
+    email: user.email,
+    password: user.password,
+  });
 };

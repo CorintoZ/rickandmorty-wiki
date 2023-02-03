@@ -15,7 +15,7 @@ const RegisterWrapper = () => {
     const user = { email, password };
 
     await registerUser(user).then((res) => {
-      cookies.set('TOKEN', res.token);
+      cookies.set('TOKEN', res.data.token);
       navigate('/');
     });
   };
@@ -58,7 +58,7 @@ const RegisterWrapper = () => {
                 data-mdb-ripple-color="light"
                 disabled={!validateForm()}
               >
-                Sign in
+                Sign up
               </button>
             </form>
           </div>
